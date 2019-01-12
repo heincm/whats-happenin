@@ -7,4 +7,4 @@
     storageBucket: "",
     messagingSenderId: "513910723970"
   };
-  firebase.initializeApp(config);
+  //firebase.initializeApp(config);
