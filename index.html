@@ -5,12 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../whats-happenin/assets/css/googlemaps.css">
+
     <title>What's Happenin</title>
+
 </head>
 
 <body>
+    <div id="map"></div>
 
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyCF43TkJJ6Pvfw7SISvyo1ItMHngisIU&callback=initMap"
+    async defer></script>
+  
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.23.0/moment.min.js"></script>
