@@ -1,18 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Starter Template - Materialize</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>What's Happenin</title>
-</head>
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="assets/css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+  <body>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br /><br />
+        <img class="responsive-img" src="assets/images/slice1.png" />
+        <div class="row center">
+          <h4 class="header col s12 light">Find Something To Do...</h4>
+          <h6 class="header col s12 light">
+            Give Us The Location. Give Us A Time Frame. We'll Do the Rest!
+          </h6>
+        </div>
+        <br /><br />
+        <div class="row center">
+          <h4>Where Are You?</h4>
+          <div class="input-field col s12">
+            <input value="" id="location" type="text" class="validate" />
+            <label class="active" for="location">Zip Code</label>
+          </div>
+        </div>
+        <div class="container">
+            <div class="row center">
+                <h4>How Much Time Do You Have To Kill?</h4>
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">1 Hour</option>
+                        <option value="2">2 Hours</option>
+                        <option value="3">3 Hours</option>
+                        <option value="6">6 Hours</option>
+                        <option value="12">Half Day</option>
+                    </select>
+                    <label>Time to Kill</label>
+                </div>
+            </div>  
+        </div>
+      <br /><br />
+    </div>
 
-<body>
+    <div class="container">
+      <div class="row center">
+        <div class="col s12">
+          <h5>Results</h5>
+          <div class="results card-panel blue lighten-3">
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+          </div>
+        <div class="results card-panel blue lighten-3">
+            <span class="white-text">I am a very simple card. I am good at containing small bits of
+                information. I am convenient because I require little markup to
+                use effectively. I am similar to what is called a panel in other
+                frameworks.
+            </span>
+        </div>
+        <div class="results card-panel blue lighten-3">
+            <span class="white-text"
+              >I am a very simple card. I am good at containing small bits of
+              information. I am convenient because I require little markup to
+              use effectively. I am similar to what is called a panel in other
+              frameworks.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <h5 class="white-text">Company Bio</h5>
+            <p class="grey-text text-lighten-4">
+              We are a team of students working on this project like it's our
+              full time job. Any amount would help support and continue
+              development on this project and is greatly appreciated.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright grey text-lighten-6">
+        <div class="container">
+          Made by
+          <a class="orange-text text-lighten-3"
+            >What's Happening, LLC &copy;2019</a
+          >
+        </div>
+      </div>
+    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <!--  Scripts-->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.23.0/moment.min.js"></script>
     <script src="../whats-happenin/assets/javascript/initial_firebase.js"></script>
     <script src="../whats-happenin/assets/javascript/firebase.js"></script>
@@ -20,6 +133,5 @@
     <script src="../whats-happenin/assets/javascript/ticketmaster.js"></script>
     <script src="../whats-happenin/assets/javascript/zomato.js"></script>
     <script src="../whats-happenin/assets/javascript/fandango.js"></script>
-</body>
-
+  </body>
 </html>
