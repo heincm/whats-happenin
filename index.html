@@ -165,14 +165,14 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="password" type="password" class="validate">
+                <input id="registerPassword" type="password" class="validate">
                 <label for="password">Password</label>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <button class="btn waves-effect waves-light" id="registerSubmit" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
           </button>
         </div>
@@ -193,7 +193,7 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="password" type="password" class="validate">
+                <input id="signPassword" type="password" class="validate">
                 <label for="password">Password</label>
               </div>
             </div>
@@ -201,13 +201,14 @@
           </div>
           <div class="modal-footer">
             <a class="waves-effect waves-light btn">Reset Password</a>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <button id ="sign-in" class="btn waves-effect waves-light" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
           </div>
         </div>
 
     <!--  Scripts-->
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script src="assets/javascript/materialize.js"></script>
