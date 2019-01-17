@@ -28,13 +28,13 @@ function signIn(email, password) {
                 "Sign In Time": moment().format("x"),
             }
             database.ref().push(databaseObject);
-            $("#signinMessage").append(`<p>${data}</p>`)
+            $("#signinMessage").html(`<p>${data}</p>`)
         })
         .catch(function (error) {
             // Handle Errors here.
             //var errorCode = error.code;
             var errorMessage = error.message;
-            $("#signinMessage").append(`<p>${errorMessage}</p>`)
+            $("#signinMessage").html(`<p>${errorMessage}</p>`)
         });
 }
 
@@ -71,7 +71,7 @@ $("#registerSubmit").on("click", function () {
             var errorCode = error.code;
             var errorMessage = error.message;
 
-            $("#registractionMsg").append(`<p>${errorMessage}</p>`)
+            $("#registractionMsg").html(`<p>${errorMessage}</p>`)
         })
 });
 
@@ -80,11 +80,11 @@ $("#resetBtn").on("click", function () {
 let emailAddress = $("#signEmail").val().trim()
     firebase.auth().sendPasswordResetEmail(emailAddress).then(function () {
         // Email sent.
-        $("#signinMessage").append(`<p>Please check your email account for a message about resetting your password</p>`)
+        $("#signinMessage").html(`<p>Please check your email account for a message about resetting your password</p>`)
     }).catch(function (error) {
         // An error happened.
         var errorMessage = error.message;
-            $("#signinMessage").append(`<p>${errorMessage}</p>`)
+            $("#signinMessage").html(`<p>${errorMessage}</p>`)
     })
 });
 
