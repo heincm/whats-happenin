@@ -80,8 +80,11 @@ $("#resetBtn").on("click", function () {
 let emailAddress = $("#signEmail").val().trim()
     firebase.auth().sendPasswordResetEmail(emailAddress).then(function () {
         // Email sent.
+        $("#signinMessage").append(`<p>Please check your email account for a message about resetting your password</p>`)
     }).catch(function (error) {
         // An error happened.
+        var errorMessage = error.message;
+            $("#signinMessage").append(`<p>${errorMessage}</p>`)
     })
 });
 
