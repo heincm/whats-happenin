@@ -55,8 +55,8 @@
         <div class="container">
             <div class="row center">
                 <h4>How Much Time Do You Have To Kill?</h4>
-                <div class="input-field inline col s12 timeOptions">
-                    <select>
+                <div class="input-field inline col s12">
+                    <select id="timeOptions">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1">1 Hour</option>
                         <option value="2">2 Hours</option>
@@ -66,53 +66,35 @@
                     </select>
                     <label>Time to Kill</label>
                 </div>
-                <a class="waves-effect waves-light btn"><i class="material-icons left">schedule</i>Find Me Something To Do!</a>
+                <a id="doIt" class="waves-effect waves-light btn"><i class="material-icons left">schedule</i>Find Me Something To Do!</a>
             </div>  
         </div>
       <br /><br />
       
     </div>
 
-    <div class="container">
-      <div class="row center">
-        <div class="col s12">
-          <h5>Results</h5>
-          <div class="googleResults card-panel teal lighten-4">
-            <span class="black-text"><strong>This is where we should push our Google Results.</strong> <br>
+<div class="container" id="searchLabel">
+  <div class="row center">
+        <h5>Here's What's Happening Now!!</h5>
+  </div>
+</div>
 
+   
+    <div class="container" id="resultsList">
+      <div class="row center">
+        <div class="col s12">   
+          <div class="card-panel teal lighten-4">
+            <span class="black-text"><strong>This is where we should push our Google Results.</strong> 
+              <br>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo optio, eveniet numquam illo praesentium laboriosam quo molestiae itaque cumque quisquam odio incidunt, qui corrupti iusto dolorem, sed fugit exercitationem. Repellendus, voluptatum, quo repudiandae doloribus atque deleniti officia laboriosam impedit dignissimos eligendi similique quos pariatur, itaque voluptatem accusamus adipisci nostrum modi?
             </span>
           </div>
-        <div class="gracenotesResults card-panel blue lime lighten-4">
-            <span class="black-text">
-              <strong>This is where we should push our Ticketmaster Results.</strong><br>
-              
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo optio, eveniet numquam illo praesentium laboriosam quo
-              molestiae itaque cumque quisquam odio incidunt, qui corrupti iusto dolorem, sed fugit exercitationem. Repellendus,
-              voluptatum, quo repudiandae doloribus atque deleniti officia laboriosam impedit dignissimos eligendi similique quos
-              pariatur, itaque voluptatem accusamus adipisci nostrum modi?
-            </span>
-        </div>
-        <div class="resultsTicketmaster card-panel blue lighten-3">
-            <span class="black-text"
-              ><strong>This is where we should push our Gracenotes Results.</strong><br>
-            
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo optio, eveniet numquam illo praesentium laboriosam quo molestiae itaque cumque quisquam odio incidunt, qui corrupti iusto dolorem, sed fugit exercitationem. Repellendus, voluptatum, quo repudiandae doloribus atque deleniti officia laboriosam impedit dignissimos eligendi similique quo pariatur, itaque voluptatem accusamus adipisci nostrum modi?
-            </span>
-          </div>
         </div>
       </div>
+
     </div>
-    <div class="container">
-      <div class="row center">
-          <div class="col s12">
-              <h4>No Time Limits?</h4>
-              <a class="waves-effect waves-light btn"><i class="material-icons left">sentiment_dissatisfied</i>I'm Bored</a>
-      </div>
-        
-      </div>
-      
-    </div>
+
+  
 
     <footer class="page-footer orange">
       <div class="container">
@@ -165,8 +147,8 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                <input id="passwordRegister" type="password" class="validate">
+                <label for="passwordRegister">Password</label>
               </div>
             </div>
           </form>
@@ -193,8 +175,8 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                <input id="passwordSign" type="password" class="validate">
+                <label for="passwordSign">Password</label>
               </div>
             </div>
 
@@ -217,5 +199,6 @@
     <script src="assets/javascript/firebase.js"></script>
     <script src="assets/javascript/googlemaps.js"></script>
     <script src="assets/javascript/gracenote.js"></script>
+    <script src="assets/javascript/main.js"></script>
   </body>
 </html>
