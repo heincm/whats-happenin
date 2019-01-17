@@ -28,7 +28,7 @@ function signIn(email, password) {
                 "Sign In Time": moment().format("x"),
             }
             database.ref().push(databaseObject);
-            $("#signinMessage").html(`<p>${data}</p>`)
+            $("#signinMessage").html(`<p>You have been successfully signed in!</p>`)
         })
         .catch(function (error) {
             // Handle Errors here.
@@ -56,7 +56,7 @@ $("#sign-out").on("click", function (event) {
 });
 
 // register user and automatically log them in
-$("#registerSubmit").on("click", function () {
+$("#registrationBtn").on("click", function () {
     let email = $("#registerEmail").val().trim();
     let password = $("#passwordRegister").val().trim();
     let first_name = $("#first_name").val().trim()
@@ -65,6 +65,7 @@ $("#registerSubmit").on("click", function () {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function (data) {
             signIn(email, password);
+            $("#registractionMsg").html(`<p>You have been successfully registered and signed in!</p>`)
         })
         .catch(function (error) {
             // Handle Errors here.
