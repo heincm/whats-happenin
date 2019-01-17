@@ -11,6 +11,14 @@ firebase.initializeApp(config);
 
 let database = firebase.database();
 
+// run sign in functino when clicking sign in button
+$("#signInBtn").on("click", function (event) {
+    event.preventDefault();
+    let email = $("#signEmail").val().trim();
+    let password = $("#passwordSign").val().trim();
+    signIn(email, password);
+})
+
 // declaring sign in function
 function signIn(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -20,21 +28,15 @@ function signIn(email, password) {
                 "Sign In Time": moment().format("x"),
             }
             database.ref().push(databaseObject);
+            $("#signinMessage").append(`<p>${data}</p>`)
         })
         .catch(function (error) {
             // Handle Errors here.
-            var errorCode = error.code;
+            //var errorCode = error.code;
             var errorMessage = error.message;
-            $("#signIn").append(`<p>${errorMessage}</p>`)
+            $("#signinMessage").append(`<p>${errorMessage}</p>`)
         });
 }
-// run sign in functino when clicking sign in button
-$("#sign-in").on("click", function (event) {
-    event.preventDefault();
-    const email = $("#signEmail").val().trim();
-    const password = $("#signPassword").val().trim();
-  signIn(email, password);
-})
 
 // run sign out function when clicking sign out button
 $("#sign-out").on("click", function (event) {
@@ -55,10 +57,10 @@ $("#sign-out").on("click", function (event) {
 
 // register user and automatically log them in
 $("#registerSubmit").on("click", function () {
-    const email = $("#registerEmail").val().trim();
-    const password = $("#registerPassword").val().trim();
-    const first_name = $("#first_name").val().trim()
-    const last_name = $("#last_name").val().trim()
+    let email = $("#registerEmail").val().trim();
+    let password = $("#passwordRegister").val().trim();
+    let first_name = $("#first_name").val().trim()
+    let last_name = $("#last_name").val().trim()
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function (data) {
@@ -69,8 +71,18 @@ $("#registerSubmit").on("click", function () {
             var errorCode = error.code;
             var errorMessage = error.message;
 
-            $("#registrationForm").append(`<p>${errorMessage}</p>`)
+            $("#registractionMsg").append(`<p>${errorMessage}</p>`)
         })
+});
+
+// reset password email
+$("#resetBtn").on("click", function () {
+let emailAddress = $("#signEmail").val().trim()
+    firebase.auth().sendPasswordResetEmail(emailAddress).then(function () {
+        // Email sent.
+    }).catch(function (error) {
+        // An error happened.
+    })
 });
 
 // persistence state to log out user upon closing the window
@@ -87,5 +99,4 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        //$("body").prepend(`<p>${errorMessage}</p>`)
     });
