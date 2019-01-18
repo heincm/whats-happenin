@@ -1,21 +1,22 @@
-
 let map;
 let infoWindow;
 let service;
+
+
 
 function initMap() {
 
 
     infoWindow = new google.maps.InfoWindow;
+   
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-localStorage.setItem("lat", pos.lat);
 
-localStorage.setItem("lng", pos.lng);
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
@@ -75,20 +76,20 @@ function callback(results, status) {
             let totalNumberRatings = results[i].user_ratings_total;   
             //address
             let placeAddress = results[i].vicinity;
-
-            let newDiv = $(`
-            <div>
-                <img src=${imageUrl}></img>
-                <h1>${placeName}</h1>
-                <h2>Address: ${placeAddress}</h2>
-                <h3>Price: ${priceLevel}</h3>
-                <h4>Rating: ${rating} out of ${totalNumberRatings} total feedback.</h4>
-            </div>   
-            `)
-                
-            $("#googleResult").append(newDiv);
-
-
+           
+            $("#resultsList").append(`
+                <div class='row center'>
+                    <div class='content col s12'>
+                        <div class='card-panel grey lighten-2'>
+                <span class='black-text'><img class="responsive-img" src=${imageUrl}/>
+                <p>Address: ${placeAddress}</p>
+                <p>Price: ${priceLevel}</p>
+                <p>Rating: ${rating} out of ${totalNumberRatings} total feedback.</p>
+                </span>
+                        </div>
+                    </div>
+                </div>
+                `);
             createMarker(results[i]);
         }
     }
@@ -106,6 +107,4 @@ function createMarker(place) {
         infoWindow.open(map, this);
     });
 }
-
-
 
