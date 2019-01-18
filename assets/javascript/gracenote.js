@@ -1,8 +1,10 @@
-// Declaring variables to use for the api call. Will wrap all of this in a function and pass arguments based on input provided
-function getMovies(lat, lng, timeTokill) {
+// Declaring variables to use for the api call. 
+function getMovies(lattitude, longitude, timeTokill) {
+    let lat = lattitude;
+    let lng = longitude;
     let apikey = "nkpdkxcq96bpkunwvw22bxdd";
     let date = moment().format("YYYY-MM-DD"); // setting the date for the current day
-    let queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&lat=" + lat + "&lng=" + lng + "&radius=" + 5 + "&api_key=" + apikey;
+    let queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&lat=" + lat + "&lng=" + lng + "&radius=" + 5 + "&api_key=" + apikey;
 
     // api call
     $.ajax({
@@ -10,7 +12,7 @@ function getMovies(lat, lng, timeTokill) {
         method: "GET"
     }).then(function (response) {
 
-        // Pulls info for the first 5 local theaters returned provided they have a showtime later than the current time.
+        // Pulls info for all local theaters returned within 5 miles provided they have a showtime later than the current time.
         for (let g = 0; g < response.length; g++) {
 
             // delcaring variables for relevant movie information
@@ -23,7 +25,8 @@ function getMovies(lat, lng, timeTokill) {
             let ticketURL = firstShowTime["ticketURI"];
             let runTimeArray = [];
             let killTime = timeTokill;
-            console.log(ticketURL)
+            let displayMessage = "Click to purchase tickets to this show";
+
             // parse out movie run time and push to runTimeArray to get relevant information
             runTimeArray.push(runTime.split(""));
 
@@ -35,15 +38,23 @@ function getMovies(lat, lng, timeTokill) {
 
                 let displayRunTime = runTimeArray[0][3] + " hrs " + runTimeArray[0][5] + runTimeArray[0][6] + " mins"
 
-                // append information to the appropriate card
+                // handle cases where there is no URL to purchae tickets
+                if (ticketURL === undefined) {
+                    displayMessage = "Sorry, there is no link to purchase tickets for this movie";
+                    ticketURL = "";
+                }
+
+                // define what will be displayed on the page
                 let movieResults = (`
                 <h5><b>Title: </b>${title}</h5>
                 <h6><b>Description: </b>${description}</h6>
                 <h6><b>Theater: </b>${theater}</h6>
                 <h6><b>Show Time: </b>${moment(showDate).format("h:mma")}</h6>
                 <h6><b>Run Time: </b>${displayRunTime}</h6>
-                <h6><b>Purchase Tickets: </b></h6><a href="${ticketURL}" target="_blank">${ticketURL}</a>
-                `)
+                <h6><b>Purchase Tickets: </b></h6><a href="${ticketURL}" target="_blank">${displayMessage}</a>
+                `);
+
+                // append information to the appropriate card
                 $("#resultsList").append(`
                 <div class='row center'>
                     <div class='content col s12'>
@@ -57,7 +68,7 @@ function getMovies(lat, lng, timeTokill) {
         }
         // Error message should something go wrong with the api call.
     }).catch(function (event) {
-        $(".gracenotesResults").prepend(`
+        $("#resultsList").prepend(`
     <div class="errorMessage">
         <p>Uh oh....something's not quite right. Try again later</p>
         <img src='https://media2.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy-downsized.gif'/>
@@ -65,12 +76,3 @@ function getMovies(lat, lng, timeTokill) {
     `);
     })
 };
-
-navigator.geolocation.getCurrentPosition(function (position) {
-    let lat = "";
-    let lng = "";
-    lat = position.coords.latitude;
-    lng = position.coords.longitude;
-    getMovies(lat, lng)
-});
-
