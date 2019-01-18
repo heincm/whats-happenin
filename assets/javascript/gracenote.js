@@ -4,7 +4,7 @@ function getMovies(lattitude, longitude, timeTokill) {
     let lng = longitude;
     let apikey = "nkpdkxcq96bpkunwvw22bxdd";
     let date = moment().format("YYYY-MM-DD"); // setting the date for the current day
-    let queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&lat=" + lat + "&lng=" + lng + "&radius=" + 5 + "&api_key=" + apikey;
+    let queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&lat=" + lat + "&lng=" + lng + "&radius=" + 5 + "&api_key=" + apikey;
 
     // api call
     $.ajax({
