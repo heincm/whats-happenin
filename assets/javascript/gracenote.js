@@ -23,7 +23,7 @@ function getMovies(lat, lng, timeTokill) {
             let ticketURL = firstShowTime["ticketURI"];
             let runTimeArray = [];
             let killTime = timeTokill;
-
+            console.log(ticketURL)
             // parse out movie run time and push to runTimeArray to get relevant information
             runTimeArray.push(runTime.split(""));
 
@@ -37,18 +37,18 @@ function getMovies(lat, lng, timeTokill) {
 
                 // append information to the appropriate card
                 let movieResults = (`
-                <h3><b>Title: </b>${title}</h3>
-                <h4><b>Description: </b>${description}</h4>
-                <h4><b>Theater: </b>${theater}</h4>
-                <h4><b>Show Time: </b>${moment(showDate).format("h:mma")}</h4>
-                <h4><b>Run Time: </b>${displayRunTime}</h4>
-                <h4><b>Purchase Tickets: </b></h4><a href="${ticketURL}" target="_blank">${ticketURL}</a>
+                <h5><b>Title: </b>${title}</h5>
+                <h6><b>Description: </b>${description}</h6>
+                <h6><b>Theater: </b>${theater}</h6>
+                <h6><b>Show Time: </b>${moment(showDate).format("h:mma")}</h6>
+                <h6><b>Run Time: </b>${displayRunTime}</h6>
+                <h6><b>Purchase Tickets: </b></h6><a href="${ticketURL}" target="_blank">${ticketURL}</a>
                 `)
                 $("#resultsList").append(`
-                <div class=“row center”>
-                    <div class=“content col s12">
-                        <div class=“card-panel teal lighten-4”>
-                <span class=“black-text”>${movieResults}</span>
+                <div class='row center'>
+                    <div class='content col s12'>
+                        <div class='card-panel teal lighten-4'>
+                <span class='black-text'>${movieResults}</span>
                         </div>
                     </div>
                 </div>
