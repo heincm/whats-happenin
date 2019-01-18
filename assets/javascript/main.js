@@ -2,6 +2,8 @@
   $(function() {
     $("#searchLabel").hide();
     $("#resultsList").hide();
+    $("#actionPanel").hide();
+
     $("#doIt").on("click", function() {
       $("#searchLabel").show();
       $("#resultsList").show();

@@ -49,10 +49,10 @@
           <img class="responsive-img" src="assets/images/slice1.png" />
           <h5 class="header col s12 light">Let us know how much time you have to kill. We'll find something for you to do!</h5>
         </div>
-        <div class="container">
+        <div class="container" id="googleMap">
           <img class="responsive-img" src="assets/images/google-maps-placeholder.png" />
         </div>
-        <div class="container">
+        <div id="actionPanel" class="container">
             <div class="row center">
                 <h4>How Much Time Do You Have To Kill?</h4>
                 <div class="input-field inline col s12">
@@ -152,12 +152,12 @@
               </div>
             </div>
           </form>
+          <div id="registractionMsg"></div>
         </div>
         <div class="modal-footer">
           <button id="registrationBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
           </button>
-          <div id="registractionMsg"></div>
         </div>
         </div>
       </div>
@@ -179,6 +179,7 @@
                 <input id="passwordSign" type="password" class="validate">
                 <label for="passwordSign">Password</label>
               </div>
+              <div id="signinMessage"></div>
             </div>
 
           </div>
@@ -187,7 +188,7 @@
             <button id="signInBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
-            <div id="signinMessage"></div>
+            
           </div>
         </div>
 
