@@ -1,54 +1,76 @@
-// Delcaring variables to use for the api call. Will wrap all of this in a function and pass arguments based on input provided
-let apikey = "nkpdkxcq96bpkunwvw22bxdd";
-let date = moment().format("YYYY-MM-DD"); // setting the date for the current day
-let zip = "30306"; // place holder zip code for now. Have to supply either zip code or coordinates for this api
-let queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&zip=" + zip + "&radius=" + 5 + "&api_key=" + apikey;
+// Declaring variables to use for the api call. Will wrap all of this in a function and pass arguments based on input provided
+function getMovies(lat, lng, timeTokill) {
+    let apikey = "nkpdkxcq96bpkunwvw22bxdd";
+    let date = moment().format("YYYY-MM-DD"); // setting the date for the current day
+    let queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate=" + date + "&lat=" + lat + "&lng=" + lng + "&radius=" + 5 + "&api_key=" + apikey;
 
-// api call
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    
-    // Pulls info for the first 5 local theaters returned provided they have a showtime later than the current time.
-    for (let g = 0; g < 5; g++) {
+    // api call
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
 
-        let title = response[g].title;
-        let firstShowTime = response[g].showtimes[0];
-        let showDate = firstShowTime["dateTime"];
-        let theater = firstShowTime["theatre"]["name"];
-        let description = response[g]["shortDescription"];
-        let runTime = response[g]["runTime"];
-        let ticketURL = firstShowTime["ticketURI"];
-        let runTimeArray = [];
+        // Pulls info for the first 5 local theaters returned provided they have a showtime later than the current time.
+        for (let g = 0; g < response.length; g++) {
 
-        // Only display information if the movie is happening after the current time
-        if (moment(showDate) > moment() && (title !== undefined)) {
-    
+            // delcaring variables for relevant movie information
+            let title = response[g].title;
+            let firstShowTime = response[g].showtimes[0];
+            let showDate = firstShowTime["dateTime"];
+            let theater = firstShowTime["theatre"]["name"];
+            let description = response[g]["shortDescription"];
+            let runTime = response[g]["runTime"];
+            let ticketURL = firstShowTime["ticketURI"];
+            let runTimeArray = [];
+            let killTime = timeTokill;
+            console.log(ticketURL)
+            // parse out movie run time and push to runTimeArray to get relevant information
             runTimeArray.push(runTime.split(""));
-            console.log(response);
-            console.log("Title: " + title);
-            console.log("Show Date: " + moment(showDate).format("h:mma"));
-            console.log("Theater: " + theater);
-            console.log("Description: " + description);
 
-            // Provides a URL to purchase tickets (if one exists)
-            if (ticketURL !== undefined) {
-                console.log("Ticket URL " + ticketURL);
+            // convert hours and minutes into minutes to be used to calculate movie time availability
+            let runTimeMath = ((parseInt(runTimeArray[0][3]) * 60) + (parseInt(runTimeArray[0][5]) * 10) + (parseInt(runTimeArray[0][6])));
 
-                // This message will display if the theater doesn't provide a URL to purchase tickets
-            } else {
-                console.log("Sorry, there's no link available to purchase tickets for this show. Please check with the theater for tickets");
+            // Only display information if the movie is happening after the current time
+            if (moment(showDate) > moment() && moment().utc().add(killTime, "h") > moment(showDate).utc().add(runTimeMath, "m") && (title !== undefined)) {
+
+                let displayRunTime = runTimeArray[0][3] + " hrs " + runTimeArray[0][5] + runTimeArray[0][6] + " mins"
+
+                // append information to the appropriate card
+                let movieResults = (`
+                <h5><b>Title: </b>${title}</h5>
+                <h6><b>Description: </b>${description}</h6>
+                <h6><b>Theater: </b>${theater}</h6>
+                <h6><b>Show Time: </b>${moment(showDate).format("h:mma")}</h6>
+                <h6><b>Run Time: </b>${displayRunTime}</h6>
+                <h6><b>Purchase Tickets: </b></h6><a href="${ticketURL}" target="_blank">${ticketURL}</a>
+                `)
+                $("#resultsList").append(`
+                <div class='row center'>
+                    <div class='content col s12'>
+                        <div class='card-panel teal lighten-4'>
+                <span class='black-text'>${movieResults}</span>
+                        </div>
+                    </div>
+                </div>
+                `);
             }
-            console.log("Run Time: " + runTimeArray[0][3] + " hrs " + runTimeArray[0][5] + runTimeArray[0][6] + " mins")
-        } 
-    }
-    // Error message should something go wrong with the api call. Prepends to the body for now until there is a div to place it in
-}).catch(function (event) {
-    $("body").prepend(`
+        }
+        // Error message should something go wrong with the api call.
+    }).catch(function (event) {
+        $(".gracenotesResults").prepend(`
     <div class="errorMessage">
         <p>Uh oh....something's not quite right. Try again later</p>
         <img src='https://media2.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy-downsized.gif'/>
     </div>
     `);
+    })
+};
+
+navigator.geolocation.getCurrentPosition(function (position) {
+    let lat = "";
+    let lng = "";
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    getMovies(lat, lng)
 });
+
