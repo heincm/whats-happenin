@@ -1,92 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1.0"
-    />
-    <title>What's Happening?</title>
 
-    <!-- CSS  -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="assets/css/materialize.css"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <link
-      href="assets/css/style.css"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-  </head>
-  <body>
-    <nav class="orange lighten-2" role="navigation">
-      <div class="nav-wrapper container">
-        <ul class="right hide-on-med-and-down">
-          <li>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>What's Happening?</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <style>
+    #map{
+                  height: 400px;
+                  width:100%;
+                 }
+  
+  
+      </style>
+
+
+</head>
+
+<body>
+  <nav class="orange lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+      <ul class="right hide-on-med-and-down">
+        <li>
           <button data-target="signIn" class="btn modal-trigger">Sign In</button>
           <button data-target="registrationForm" class="btn modal-trigger">Register</button>
-        </ul>
+      </ul>
 
-        <ul id="nav-mobile" class="sidenav">
-          <li><a class="waves-effect waves-light btn modal-trigger" href="#signIn">Sign In</a></li>
-          <li><a class="waves-effect waves-light btn modal-trigger" href="#registrationForm">Register</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#signIn">Sign In</a></li>
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#registrationForm">Register</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <div class="row center">
+        <img class="responsive-img" src="assets/images/slice1.png" />
+        <h5 class="header col s12 light">Let us know how much time you have to kill. We'll find something for you to
+          do!</h5>
       </div>
-    </nav>
-
-    <div class="section no-pad-bot" id="index-banner">
-      <div class="container">
+      <div class="container" id="map">
+        <img class="responsive-img" src="assets/images/google-maps-placeholder.png" />
+      </div>
+      <div id="actionPanel" class="container">
         <div class="row center">
-          <img class="responsive-img" src="assets/images/slice1.png" />
-          <h5 class="header col s12 light">Let us know how much time you have to kill. We'll find something for you to do!</h5>
+          <h4>How Much Time Do You Have To Kill?</h4>
+          <div class="input-field inline col s12">
+            <select id="timeOptions">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">1 Hour</option>
+              <option value="2">2 Hours</option>
+              <option value="3">3 Hours</option>
+              <option value="6">6 Hours</option>
+              <option value="12">Half Day</option>
+            </select>
+            <label>Time to Kill</label>
+          </div>
+          <a id="doIt" class="waves-effect waves-light btn"><i class="material-icons left">schedule</i>Find Me
+            Something To Do!</a>
         </div>
-        <div class="container" id="googleMap">
-          <img class="responsive-img" src="assets/images/google-maps-placeholder.png" />
-        </div>
-        <div id="actionPanel" class="container">
-            <div class="row center">
-                <h4>How Much Time Do You Have To Kill?</h4>
-                <div class="input-field inline col s12">
-                    <select id="timeOptions">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">1 Hour</option>
-                        <option value="2">2 Hours</option>
-                        <option value="3">3 Hours</option>
-                        <option value="6">6 Hours</option>
-                        <option value="12">Half Day</option>
-                    </select>
-                    <label>Time to Kill</label>
-                </div>
-                <a id="doIt" class="waves-effect waves-light btn"><i class="material-icons left">schedule</i>Find Me Something To Do!</a>
-            </div>  
-        </div>
+      </div>
       <br /><br />
-      
+
     </div>
 
-<div class="container" id="searchLabel">
-  <div class="row center">
+    <div class="container" id="searchLabel">
+      <div class="row center">
         <h5>Here's What's Happening Now!!</h5>
-  </div>
-</div>
+      </div>
+    </div>
 
-   
+
     <div class="container" id="resultsList">
       <div class="row center">
-        <div class="col s12">   
+        <div class="col s12">
           <div class="card-panel teal lighten-4">
-            <span class="black-text"><strong>This is where we should push our Google Results.</strong> 
+            <span class="black-text"><strong>This is where we should push our Google Results.</strong>
               <br>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo optio, eveniet numquam illo praesentium laboriosam quo molestiae itaque cumque quisquam odio incidunt, qui corrupti iusto dolorem, sed fugit exercitationem. Repellendus, voluptatum, quo repudiandae doloribus atque deleniti officia laboriosam impedit dignissimos eligendi similique quos pariatur, itaque voluptatem accusamus adipisci nostrum modi?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo optio, eveniet numquam illo praesentium
+              laboriosam quo molestiae itaque cumque quisquam odio incidunt, qui corrupti iusto dolorem, sed fugit
+              exercitationem. Repellendus, voluptatum, quo repudiandae doloribus atque deleniti officia laboriosam
+              impedit dignissimos eligendi similique quos pariatur, itaque voluptatem accusamus adipisci nostrum modi?
             </span>
           </div>
         </div>
@@ -94,7 +96,7 @@
 
     </div>
 
-  
+
 
     <footer class="page-footer orange">
       <div class="container">
@@ -112,9 +114,7 @@
       <div class="footer-copyright grey text-lighten-6">
         <div class="container">
           Made by
-          <a class="orange-text text-lighten-3"
-            >What's Happening, LLC &copy;2019</a
-          >
+          <a class="orange-text text-lighten-3">What's Happening, LLC &copy;2019</a>
         </div>
       </div>
     </footer>
@@ -130,7 +130,7 @@
                 <input placeholder="John" id="first_name" type="text" class="validate">
                 <label for="first_name">First Name</label>
               </div>
-        
+
               <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
                 <input placeholder="Doe" id="last_name" type="text" class="validate">
@@ -159,50 +159,53 @@
             <i class="material-icons right">send</i>
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Sign In Modal Structure -->
+    <div id="signIn" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input placeholder="example@bomb.com" id="signEmail" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              <input id="passwordSign" type="password" class="validate">
+              <label for="passwordSign">Password</label>
+            </div>
+            <div id="signinMessage"></div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a id="resetBtn" class="waves-effect waves-light btn">Reset Password</a>
+          <button id="signInBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+
         </div>
       </div>
-    
-      <!-- Sign In Modal Structure -->
-      <div id="signIn" class="modal">
-        <div class="modal-content">
-          <div class="row">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <input placeholder="example@bomb.com" id="signEmail" type="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <input id="passwordSign" type="password" class="validate">
-                <label for="passwordSign">Password</label>
-              </div>
-              <div id="signinMessage"></div>
-            </div>
+      <!-- hello -->
+      <!--  Scripts-->
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+      <script src="assets/javascript/materialize.js"></script>
+      <script src="assets/javascript/init.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/moment@2.23.0/moment.min.js"></script>
+      <script src="assets/javascript/initial_firebase.js"></script>
+      <script src="assets/javascript/firebase.js"></script>
+      <script src="assets/javascript/googlemaps.js"></script>
+      <script src="assets/javascript/gracenote.js"></script>
+      <script src="assets/javascript/main.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjj1TVnyQUGtVgCfrKDPdBBOZAf-ja6ws&callback=initMap&libraries=places"
+        async defer></script>
+</body>
 
-          </div>
-          <div class="modal-footer">
-            <a id="resetBtn" class="waves-effect waves-light btn">Reset Password</a>
-            <button id="signInBtn" class="btn waves-effect waves-light" type="submit" name="action">Submit
-              <i class="material-icons right">send</i>
-            </button>
-            
-          </div>
-        </div>
-<!-- hello -->
-    <!--  Scripts-->
-    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-    <script src="assets/javascript/materialize.js"></script>
-    <script src="assets/javascript/init.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.23.0/moment.min.js"></script>
-    <script src="assets/javascript/initial_firebase.js"></script>
-    <script src="assets/javascript/firebase.js"></script>
-    <script src="assets/javascript/googlemaps.js"></script>
-    <script src="assets/javascript/gracenote.js"></script>
-    <script src="assets/javascript/main.js"></script>
-  </body>
 </html>

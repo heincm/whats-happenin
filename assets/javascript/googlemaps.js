@@ -1,8 +1,7 @@
-
 let map;
 let infoWindow;
 let service;
-
+//function callGoogle(){
 function initMap() {
 
 
@@ -76,6 +75,8 @@ function callback(results, status) {
             //address
             let placeAddress = results[i].vicinity;
 
+
+            
             let newDiv = $(`
             <div>
                 <img src=${imageUrl}></img>
@@ -85,10 +86,17 @@ function callback(results, status) {
                 <h4>Rating: ${rating} out of ${totalNumberRatings} total feedback.</h4>
             </div>   
             `)
-                
-            $("#googleResult").append(newDiv);
-
-
+               
+           
+            $("#resultsList").append(`
+                <div class='row center'>
+                    <div class='content col s12'>
+                        <div class='card-panel teal lighten-4'>
+                <span class='black-text'>${newDiv}</span>
+                        </div>
+                    </div>
+                </div>
+                `);
             createMarker(results[i]);
         }
     }
@@ -106,6 +114,5 @@ function createMarker(place) {
         infoWindow.open(map, this);
     });
 }
-
 
 
