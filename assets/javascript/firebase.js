@@ -29,7 +29,7 @@ function signIn(email, password) {
             }
             database.ref().push(databaseObject);
             $("#signinMessage").html(`<p>You have been successfully signed in!</p>`)
-          
+
             // show the action panel on log in
             $("#actionPanel").show();
         })
@@ -77,10 +77,11 @@ $("#resetBtn").on("click", function () {
 // persistence state to log out user upon closing the window
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(function () {
- 
+
         // New sign-in will be persisted with session persistence.
-        $("#actionPanel").show();
-        return firebase.auth().signInWithEmailAndPassword(email, password);
+        return firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
+            $("#actionPanel").show();
+        });  
     })
     .catch(function (error) {
         // Handle Errors here.
