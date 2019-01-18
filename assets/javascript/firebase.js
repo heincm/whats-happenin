@@ -29,31 +29,16 @@ function signIn(email, password) {
             }
             database.ref().push(databaseObject);
             $("#signinMessage").html(`<p>You have been successfully signed in!</p>`)
+          
+            // show the action panel on log in
+            $("#actionPanel").show();
         })
         .catch(function (error) {
             // Handle Errors here.
-            //var errorCode = error.code;
             var errorMessage = error.message;
             $("#signinMessage").html(`<p>${errorMessage}</p>`)
         });
 }
-
-// run sign out function when clicking sign out button
-$("#sign-out").on("click", function (event) {
-    firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-    })
-        .then(function (data) {
-            let signOutObject = {
-                "User ID": data["user"]["uid"],
-                "Sign Out Time": moment().format("x")
-            }
-            database.ref().push(signOutObject);
-        })
-        .catch(function (error) {
-            // An error happened.
-        })
-});
 
 // register user and automatically log them in
 $("#registrationBtn").on("click", function () {
@@ -78,25 +63,23 @@ $("#registrationBtn").on("click", function () {
 
 // reset password email
 $("#resetBtn").on("click", function () {
-let emailAddress = $("#signEmail").val().trim()
+    let emailAddress = $("#signEmail").val().trim()
     firebase.auth().sendPasswordResetEmail(emailAddress).then(function () {
         // Email sent.
         $("#signinMessage").html(`<p>Please check your email account for a message about resetting your password</p>`)
     }).catch(function (error) {
         // An error happened.
         var errorMessage = error.message;
-            $("#signinMessage").html(`<p>${errorMessage}</p>`)
+        $("#signinMessage").html(`<p>${errorMessage}</p>`)
     })
 });
 
 // persistence state to log out user upon closing the window
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
     .then(function () {
-        // Existing and future Auth states are now persisted in the current
-        // session only. Closing the window would clear any existing state even
-        // if a user forgets to sign out.
-        // ...
+ 
         // New sign-in will be persisted with session persistence.
+        $("#actionPanel").show();
         return firebase.auth().signInWithEmailAndPassword(email, password);
     })
     .catch(function (error) {
