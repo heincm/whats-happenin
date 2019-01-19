@@ -3,7 +3,7 @@
     $("#searchLabel").hide();
     $("#resultsList").hide();
     $("#actionPanel").hide();
-
+    $("#map").hide();
     $("#doIt").on("click", function() {
       $("#searchLabel").show();
       $("#resultsList").show();
