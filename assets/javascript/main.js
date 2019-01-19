@@ -7,7 +7,7 @@
     $("#doIt").on("click", function() {
       $("#searchLabel").show();
       $("#resultsList").show();
-      $("#googlePlaceholder").hide();
+      $("#google-gitmaps-placeholder").hide();
       $("#map").show();
       let timeTokill = $("#timeOptions option:selected").val();
       let latPosition = localStorage.getItem("lat");
