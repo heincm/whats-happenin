@@ -44,6 +44,14 @@ function getMovies(lattitude, longitude, timeTokill) {
                     ticketURL = "";
                 }
 
+                if (description === undefined){
+                    description = "Sorry, there is no description information available for this movie"
+                }
+
+                if (theater === undefined){
+                    theater = "Sorry, there is no theater information to display for this movie"
+                }
+
                 // define what will be displayed on the page
                 let movieResults = (`
                 <h5><b>Title: </b>${title}</h5>
