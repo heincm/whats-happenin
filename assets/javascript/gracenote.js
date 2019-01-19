@@ -27,33 +27,36 @@ function getMovies(lattitude, longitude, timeTokill) {
             let killTime = timeTokill;
             let displayMessage = "Click to purchase tickets to this show";
 
+
             // parse out movie run time and push to runTimeArray to get relevant information
-            runTimeArray.push(runTime.split(""));
 
-            // convert hours and minutes into minutes to be used to calculate movie time availability
-            let runTimeMath = ((parseInt(runTimeArray[0][3]) * 60) + (parseInt(runTimeArray[0][5]) * 10) + (parseInt(runTimeArray[0][6])));
+            if (runTime !== undefined) {
+                runTimeArray.push(runTime.split(""));
 
-            // Only display information if the movie is happening after the current time
-            if (moment(showDate) > moment() && moment().utc().add(killTime, "h") > moment(showDate).utc().add(runTimeMath, "m") && (title !== undefined)) {
+                // convert hours and minutes into minutes to be used to calculate movie time availability
+                let runTimeMath = ((parseInt(runTimeArray[0][3]) * 60) + (parseInt(runTimeArray[0][5]) * 10) + (parseInt(runTimeArray[0][6])));
 
-                let displayRunTime = runTimeArray[0][3] + " hrs " + runTimeArray[0][5] + runTimeArray[0][6] + " mins"
+                // Only display information if the movie is happening after the current time
+                if (moment(showDate) > moment() && moment().utc().add(killTime, "h") > moment(showDate).utc().add(runTimeMath, "m") && (title !== undefined)) {
 
-                // handle cases where there is no URL to purchae tickets
-                if (ticketURL === undefined) {
-                    displayMessage = "Sorry, there is no link to purchase tickets for this movie";
-                    ticketURL = "";
-                }
+                    let displayRunTime = runTimeArray[0][3] + " hrs " + runTimeArray[0][5] + runTimeArray[0][6] + " mins"
 
-                if (description === undefined){
-                    description = "Sorry, there is no description information available for this movie"
-                }
+                    // handle cases where there is no URL to purchae tickets
+                    if (ticketURL === undefined) {
+                        displayMessage = "Sorry, there is no link to purchase tickets for this movie";
+                        ticketURL = "";
+                    }
 
-                if (theater === undefined){
-                    theater = "Sorry, there is no theater information to display for this movie"
-                }
+                    if (description === undefined) {
+                        description = "Sorry, there is no description information available for this movie"
+                    }
 
-                // define what will be displayed on the page
-                let movieResults = (`
+                    if (theater === undefined) {
+                        theater = "Sorry, there is no theater information to display for this movie"
+                    }
+
+                    // define what will be displayed on the page
+                    let movieResults = (`
                 <h5><b>Title: </b>${title}</h5>
                 <h6><b>Description: </b>${description}</h6>
                 <h6><b>Theater: </b>${theater}</h6>
@@ -62,8 +65,8 @@ function getMovies(lattitude, longitude, timeTokill) {
                 <h6><b>Purchase Tickets: </b></h6><a href="${ticketURL}" target="_blank">${displayMessage}</a>
                 `);
 
-                // append information to the appropriate card
-                $("#resultsList").append(`
+                    // append information to the appropriate card
+                    $("#resultsList").append(`
                 <div class='row center'>
                     <div class='content col s12'>
                         <div class='card-panel teal lighten-4'>
@@ -72,6 +75,7 @@ function getMovies(lattitude, longitude, timeTokill) {
                     </div>
                 </div>
                 `);
+                }
             }
         }
         // Error message should something go wrong with the api call.
