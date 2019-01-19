@@ -54,7 +54,7 @@ function generateService(map, currentLocation) {
     service.nearbySearch({
         location: currentLocation,
         openNow: true,
-        radius: 1000,
+        radius: 16000,
         type: "restaurant",
     }, callback);
 
